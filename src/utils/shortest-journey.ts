@@ -1,8 +1,8 @@
 
-const lowestCostNode = (costs:  string | number | object | any, processed: Array<string>) => {
-  return Object.keys(costs).reduce((lowest: string | any, node: string) => {
+const shortestNode = (costs:  string | number | object | any, nodesAlreadyCall: Array<string>) => {
+  return Object.keys(costs).reduce((lowest: string | any, node: string ) => {
     if (lowest === null || costs[node] < costs[lowest]) {
-      if (!processed.includes(node)) {
+      if (!nodesAlreadyCall.includes(node)) {
         lowest = node;
       }
     }
@@ -10,23 +10,19 @@ const lowestCostNode = (costs:  string | number | object | any, processed: Array
   }, null);
 };
 
-// function that returns the minimum cost and path to reach Finish
-export const dijkstra = (graph: { [ x: string ]: any; start?: any; }) => {
-  // track lowest cost to reach each node
+// returns the minimum cost and path to reach finish
+export const shortestJourney = (graph: { [ x: string ]: any; start?: any; }) => {
   const costs = Object.assign({ finish: Infinity }, graph.start);
-  // track paths
   const parents: { [ key: string ]:  any } = { finish: null };
 
   for (let child in graph.start) {
     parents[child] = 'start';
   }
 
-  // track nodes that have already been processed
-  const processed: Array<string> = [];
+  const nodesAlreadyCall: Array<string> = [];
 
-  let node = lowestCostNode(costs, processed);
+  let node = shortestNode(costs, nodesAlreadyCall);
 
-  
   while (node) {
     let cost = costs[node];
     let children = graph[node];
@@ -41,10 +37,10 @@ export const dijkstra = (graph: { [ x: string ]: any; start?: any; }) => {
         parents[n] = node;
       }
     }
-    processed.push(node);
-    node = lowestCostNode(costs, processed);
+    nodesAlreadyCall.push(node);
+    node = shortestNode(costs, nodesAlreadyCall);
   }
-  let optimalPath = ['finish'];
+  let optimalPath: Array<string> = ['finish'];
   let parent = parents.finish;
 
   while (parent) {
@@ -53,15 +49,10 @@ export const dijkstra = (graph: { [ x: string ]: any; start?: any; }) => {
   }
 
   optimalPath.reverse();
-  const results = {
+  const endOfJourney = {
     distance: costs.finish,
-    path: optimalPath
+    path: optimalPath.splice(1, optimalPath.length -2)
   };
 
-  return results;
+  return endOfJourney;
 };
-
-// console.log(Object.keys(route))
-
-// let arr = ["start", "A", "B", "D", "E", "finish"].length
-// ["start", "A", "B", "D", "e", "finish"].splice(1,arr -2)

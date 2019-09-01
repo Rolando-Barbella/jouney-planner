@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<DocumentFragment>
+  <div
+    class="App"
+  >
+    <header>
+      <h1>
+        Journey Planner
+      </h1>
+    </header>
+    <section
+      class="journey-planner-container"
+    >
+      <div
+        class="wrapper-journey-planner"
+      >
+        <div>
+          <h2>
+            Start
+          </h2>
+          <ul
+            data-testid="start-options"
+          >
+            <li
+              class=""
+            >
+              A
+            </li>
+            <li
+              class=""
+            >
+              B
+            </li>
+            <li
+              class=""
+            >
+              C
+            </li>
+            <li
+              class=""
+            >
+              D
+            </li>
+          </ul>
+        </div>
+        <div
+          class="yo"
+        >
+          <br />
+          <ul
+            data-testid="end-options"
+          >
+            <li
+              class="active-circle"
+            >
+              H
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="button-container"
+      >
+        <button
+          data-testid="search-journey"
+          disabled=""
+          style="background: grey;"
+        >
+          Search
+        </button>
+      </div>
+    </section>
+  </div>
+</DocumentFragment>
+`;

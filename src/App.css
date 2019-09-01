@@ -6,6 +6,13 @@
   flex-direction: column;
 }
 
+.end-wrapper {
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  flex-direction: column;
+}
+
 h1, h2 {
   font-weight: normal;
 }
@@ -26,6 +33,7 @@ li {
   position: relative;
   background: #bbddff;
   border: solid 1px #8abdf0;
+  cursor: pointer;
 }
 
 .journey-planner-container { 
@@ -55,6 +63,7 @@ li {
 .result-journey {
   display: inline-block;
   margin-right: 10px;
+  background: dodgerblue;
 }
 
 .wrapper-result-journey {
@@ -89,7 +98,7 @@ li {
 
 button{
   background-image: linear-gradient(to top left,#4ca64c,#008000);
-  color: #fff !important;
+  color: #fff;
   display: inline-block;
   font-family: inherit;
   font-weight: 700;
@@ -110,3 +119,4 @@ button{
 button:hover{
   background-image: linear-gradient(to top left,#008000, #4ca64c );
 }
+
