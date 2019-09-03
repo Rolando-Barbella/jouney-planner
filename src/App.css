@@ -85,6 +85,7 @@ li {
 }
 
 .active-circle {
+  cursor: auto;
   background: dodgerblue;
   border: solid 1px #1873cc;
   font-weight: 500;

@@ -10,9 +10,9 @@ const shortestNode = (costs:  string | number | object | any, nodesAlreadyCall: 
   }, null);
 };
 
-// returns the minimum cost and path to reach finish
+// returns the minimum journey and path to reach finish
 export const shortestJourney = (graph: { [ x: string ]: any; start?: any; }) => {
-  const costs = Object.assign({ finish: Infinity }, graph.start);
+  const journeis = Object.assign({ finish: Infinity }, graph.start);
   const parents: { [ key: string ]:  any } = { finish: null };
 
   for (let child in graph.start) {
@@ -21,24 +21,24 @@ export const shortestJourney = (graph: { [ x: string ]: any; start?: any; }) => 
 
   const nodesAlreadyCall: Array<string> = [];
 
-  let node = shortestNode(costs, nodesAlreadyCall);
+  let node = shortestNode(journeis, nodesAlreadyCall);
 
   while (node) {
-    let cost = costs[node];
+    let cost = journeis[node];
     let children = graph[node];
     for (let n in children) {
       let newCost = cost + children[n];
-      if (!costs[n]) {
-        costs[n] = newCost;
+      if (!journeis[n]) {
+        journeis[n] = newCost;
         parents[n] = node;
       }
-      if (costs[n] > newCost) {
-        costs[n] = newCost;
+      if (journeis[n] > newCost) {
+        journeis[n] = newCost;
         parents[n] = node;
       }
     }
     nodesAlreadyCall.push(node);
-    node = shortestNode(costs, nodesAlreadyCall);
+    node = shortestNode(journeis, nodesAlreadyCall);
   }
   let optimalPath: Array<string> = ['finish'];
   let parent = parents.finish;
@@ -50,7 +50,7 @@ export const shortestJourney = (graph: { [ x: string ]: any; start?: any; }) => 
 
   optimalPath.reverse();
   const endOfJourney = {
-    distance: costs.finish,
+    distance: journeis.finish,
     path: optimalPath.splice(1, optimalPath.length -2)
   };
 

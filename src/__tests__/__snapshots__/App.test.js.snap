@@ -46,7 +46,7 @@ exports[`renders without crashing 1`] = `
           </ul>
         </div>
         <div
-          class="yo"
+          class="end-wrapper"
         >
           <br />
           <ul

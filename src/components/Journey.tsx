@@ -1,26 +1,33 @@
-import React from 'react';
+import * as React from "react";
 
-const Journey = (props: Object | string | Function | any) => {
-  return(
-    <ul data-testid={props.dataTestId}>
+interface JourneyProps {
+  journeis: Array<string>,
+  dataTestId: string,
+  journeyName?: string,
+  verticalRow?: string,
+  onClick?: Function | any,
+}
+
+const Journey: React.FC<JourneyProps> =
+  ({ journeis, dataTestId, journeyName, verticalRow, onClick }) => (
+    <ul data-testid={dataTestId}>
       {
-        props.journeis.map((journey: string) => (
+        journeis.map((journey: string) => (
           <li
             key={journey}
             className={
-              props.journeyName === journey ? 
-              'active-circle' + props.verticalRow  
-              : props.verticalRow 
+              journeyName === journey ? 
+              'active-circle' + verticalRow  
+              : verticalRow 
             }
-            onClick={() => props.onClick(journey)}
+            onClick={() => onClick(journey)}
           >
             {journey}
           </li>
         ))
       }
     </ul>
-  )
-}
+  );
 
 export default Journey;
 

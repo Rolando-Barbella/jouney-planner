@@ -1,50 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
 import Journey  from './components/Journey';
 import { shortestJourney } from "./utils/shortest-journey";
+import { fromAtoH, fromBtoH, fromCtoH, fromDtoH } from './types/journeyTypes'
 import './App.css';
-
-const fromAtoH: { [key: string]: number | object } = {
-  start: { A: 1 },
-  A: { C: 2 },
-  C: { D: 1 },
-  D: { F: 1 },
-  F: { G: 3 },
-  G: { H: 4 },
-  H: { finish: 1 },
-  finish: {}
-};
-
-const fromBtoH: { [key: string]: number | object } = {
-  start: { B: 1 },
-  A: { C: 4, B: 2 },
-  B: { E: 7, D: 4 },
-  C: { D: 6, },
-  D: { G: 2, C: 4 },
-  E: { H: 10 },
-  G: { H: 4 },
-  F: { G: 2 },
-  H: { finish: 1 },
-  finish: {}
-};
-
-const fromCtoH: { [key: string]: number | object } = {
-  start: { C: 1 },
-  C: { D: 1, F: 4 },
-  D: { F: 1 },
-  F: { G: 3 },
-  G: { H: 4 },
-  H: { finish: 1 },
-  finish: {}
-};
-
-const fromDtoH: { [key: string]: number | object } = {
-  start: { D: 1 },
-  D: { F: 1, G: 2 },
-  F: { G: 3 },
-  G: { H: 4 },
-  H: { finish: 1 },
-  finish: {}
-};
 
 function App() {
   const [ startJourneis ] = useState(['A', 'B', 'C', 'D']);
@@ -52,10 +11,11 @@ function App() {
   const [ journey, setJourney ] = useState({ start: '', end: 'H' });
   const [ showJourneyPlanner, setShowJourneyPlanner ] = useState(true);
   
-  const disabledButton = Object.values(journey).every(j => j !== "");
+  const disabledButton = Object.values(journey).every((j:string) => j !== "");
 
-  const findShortestJourney = (journey:{[ key: string ]: string } ) => {
-    let { start } = journey;
+  const findShortestJourney = (journey: {[ key: string ]: string } ) => {
+    let { start }: {[ key: string ]: string } = journey;
+
     if (start === "A") {
       return shortestJourney(fromAtoH);
     }
@@ -118,6 +78,7 @@ function App() {
             </div>
           </> : (
             <div className="wrapper-result-journey">
+              <h1>Your shortest route is:</h1>
               <Journey 
                 dataTestId="result-journey"
                 verticalRow="result-journey"
